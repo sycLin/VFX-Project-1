@@ -1,0 +1,5 @@
+function HDRImg = getHDR(images, g, lt, w)
+    row = images{1} 
+    col =
+    lnE = zeros()
+end
