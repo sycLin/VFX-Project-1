@@ -81,6 +81,8 @@ namespace ImageAlignment {
 	// main function
 	void GetExpShift(const Mat im1, const Mat im2, int shift_bits, int shift_ret[2]);
 	void ImageShift(Mat& im, int x0, int y0);
+	// overall alignment function
+	void AlignImages(int image_count, Mat* images);
 }
 
 
@@ -284,7 +286,7 @@ void ImageAlignment::GetExpShift(const Mat im1, const Mat im2, int shift_bits, i
 // im: the image to shift.
 // x0: shift amount in 1st dimension.
 // y0: shift amount in 2nd dimension.
-void ImageShift(Mat& im, int x0, int y0) {
+void ImageAlignment::ImageShift(Mat& im, int x0, int y0) {
 	Mat tmp = im.clone();
 	for(int i=0; i<im.rows; i++) {
 		for(int j=0; j<im.cols; j++) {
@@ -297,6 +299,24 @@ void ImageShift(Mat& im, int x0, int y0) {
 				im.at<Vec3b>(i, j)[2] = tmp.at<Vec3b>(targetX, targetY)[2];
 			}
 		}
+	}
+}
+
+// To align and array of color images.
+// image_count: the total number of color images.
+// images: the array (of color images).
+void ImageAlignment::AlignImages(int image_count, Mat* images) {
+	if(image_count <= 1)
+		return;
+	// get grayscale image of every color image
+	Mat g_images[image_count];
+	for(int i=0; i<image_count; i++)
+		cvtColor(images[i], g_images[i], CV_BGR2GRAY);
+	// align each with its predecessor
+	for(int i=1; i<image_count; i++) {
+		int shift_amount[2];
+		GetExpShift(g_images[i-1], g_images[i], 4, shift_amount);
+		ImageShift(images[i], shift_amount[0], shift_amount[1]);
 	}
 }
 
