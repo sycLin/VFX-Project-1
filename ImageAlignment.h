@@ -229,6 +229,11 @@ int ImageAlignment::BitmapTotal(const Bitmap bm) {
 	return ret;
 }
 
+// Main function of Ward's MTB algorithm.
+// im1: the first image.
+// im2: the second image.
+// shift_bits: parameter.
+// shift_ret: the shift bits in 2 dimensions to return.
 void ImageAlignment::GetExpShift(const Mat im1, const Mat im2, int shift_bits, int shift_ret[2]) {
 	
 	int min_err;
@@ -275,6 +280,10 @@ void ImageAlignment::GetExpShift(const Mat im1, const Mat im2, int shift_bits, i
 	}
 }
 
+// To shift a real color image (CV_8UC3).
+// im: the image to shift.
+// x0: shift amount in 1st dimension.
+// y0: shift amount in 2nd dimension.
 void ImageShift(Mat& im, int x0, int y0) {
 	Mat tmp = im.clone();
 	for(int i=0; i<im.rows; i++) {
