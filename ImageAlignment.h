@@ -33,7 +33,7 @@ namespace ImageAlignment {
 			_dim2 = dim2;
 			_real_dim2 = real_dim2;
 		}
-		bool get(int d1, int d2) {
+		bool get(int d1, int d2) const {
 			// simple checking
 			if(d1 < 0 || d2 < 0)
 				return false;
@@ -52,7 +52,7 @@ namespace ImageAlignment {
 				return;
 			data[d1][d2/8] &= ~(1 << (d2%8));
 		}
-		void draw() {
+		void draw() const {
 			for(int i=0; i<_dim1; i++) {
 				for(int j=0; j<_dim2; j++) {
 					std::cout << (int)get(i, j) << " ";
@@ -60,10 +60,10 @@ namespace ImageAlignment {
 				std::cout << std::endl;
 			}
 		}
-		int dim1() {
+		int dim1() const {
 			return _dim1;
 		}
-		int dim2() {
+		int dim2() const {
 			return _dim2;
 		}
 	private:
