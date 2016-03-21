@@ -38,21 +38,15 @@ function hw1()
     end
 %{     
     y = linspace(1,256,256);
-    x = g(y,1);
+    x1 = g(y,1);
+    x2 = g(y,2);
+    x3 = g(y,3);
     figure
-    plot(x, y)
-     
-    y = linspace(1,256,256);
-    x = g(y,2);
-    figure
-    plot(x, y)
-     
-    y = linspace(1,256,256);
-    x = g(y,3);
-    figure
-    plot(x, y)
-%}     
+    plot(x1, y, 'r', x2, y, 'g', x3, y, 'b')
+%}    
+    
     img = getHDR(Img, g, lt, w);
+%     hdrwrite(img,'test.hdr')
     rgbeImg = getRGBE(img);
     writeRGBE(rgbeImg, ['test','.hdr']);
 
