@@ -53,6 +53,8 @@ function hw1()
     plot(x, y)
 %}     
     img = getHDR(Img, g, lt, w);
+    rgbeImg = getRGBE(img);
+    writeRGBE(rgbeImg, ['test','.hdr']);
 
 end
 

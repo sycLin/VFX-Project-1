@@ -1,0 +1,4 @@
+function writeRGBE(rgbeImg, filename)
+    fp = fopen(filename,'w');
+    
+end
