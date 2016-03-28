@@ -1,14 +1,14 @@
 
 
 function hw1()
-    [~, speed, ~, ~, ~] = textread('memorial.hdr_image_list.txt','%s %f %d %d %d');
+    [~, speed] = textread('./test_data2/expose.txt','%s %f');
     for i=1:16
-        Img{i} = imread(['memorial00', num2str(i+60), '.png']);
+        Img{i} = imread(['./test_data2/SAM_00', num2str(i+14), '.JPG']);
     end
     
     for g=1:3
         G{g} = [];
-        for j=1:16
+        for j=1:size(Img,2)
             tmp = [];
             for r=1:size(Img{j}(:,:,g), 1)
                 for c=1:size(Img{j}(:,:,g), 2)
@@ -34,22 +34,26 @@ function hw1()
     lE = zeros(50, 3);
     
     for i=1:3
-        [g(:,i), lE(:,i)] = gSolve(Z{i}, lt, 10, w);
+        [g(:,i), lE(:,i)] = gSolve(Z{i}, lt, 100, w);
     end
-%{     
+     
     y = linspace(1,256,256);
     x1 = g(y,1);
     x2 = g(y,2);
     x3 = g(y,3);
     figure
-    plot(x1, y, 'r', x2, y, 'g', x3, y, 'b')
-%}    
+    plot(x1, y, 'r', x2, y, 'g', x3, y, 'b');
+    savefig('mapping.fig');
+    
     
     img = getHDR(Img, g, lt, w);
 %     hdrwrite(img,'test.hdr')
     rgbeImg = getRGBE(img);
-    writeRGBE(rgbeImg, ['test','.hdr']);
-
+    writeRGBE(rgbeImg, 'result.rgbe');
+    writeHDR(rgbeImg, ['result','.hdr']);
+    hdr = hdrread('result.hdr');
+    rgb = tonemap(hdr);
+    imwrite(rgb,'result.jpg');
 end
 
 function weight = weighted()
@@ -58,7 +62,7 @@ function weight = weighted()
 end
 
 function lt = B()
-    [~, speed, ~, ~, ~] = textread('memorial.hdr_image_list.txt','%s %f %d %d %d');
+    [~, speed] = textread('./test_data2/expose.txt','%s %f');
     lt = [];
     for i=1:size(speed,1)
         lt = cat(2, lt, log(1/speed(i)));

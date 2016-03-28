@@ -2,11 +2,6 @@ function writeRGBE(rgbeImg, filename)
     fp = fopen(filename,'w');
     [row, col, channel] = size(rgbeImg);
     
-    fprintf(fp,'#?RADIANCE\n');
-    fprintf(fp,'FORMAT=32-bit_rle_rgbe\n');
-    fprintf(fp,'EXPOSURE= 1.0000000000000\n\n');
-    fprintf(fp,'-Y %d +X %d\n',row,col);
-    
     outputData = zeros(row*col*channel,1);
     index = 1;
     for r=1:row
