@@ -4,9 +4,9 @@ VFX Project 1
 ## overview
 
 This project basically consists of 4 parts.
-* [ ] taking photos w/ different exposures.
+* [x] taking photos w/ different exposures.
 * [x] image alignment (Steven)
-* [ ] hdr radiance map producing
+* [x] hdr radiance map producing
 * [ ] tone mapping
 
 ## taking photos
