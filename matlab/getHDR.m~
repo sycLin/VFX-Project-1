@@ -9,20 +9,17 @@ function HDRImg = getHDR(images, g, lt, w)
             for c=1:col
                 sumWeightedlE = 0;
                 sumWeight = 0;
-                
                 exclude = zeros(1,imageNum);
                 tmpSum = 0;
                 for j=1:imageNum
-                    tmpE = (g(images{j}(r,c,channel) + 1) - lt(j))*w(images{j}(r,c,channel) + 1);
+                    tmpE = (g(images{j}(r,c,channel) + 1) - lt(j))*w(images{j}(r,c,channel) + 1)
                     tmpSum = tmpSum + tmpE;
                 end
-               
                 avg = tmpSum/imageNum;
-               
+                
                 for j=1:imageNum
-                    tmpE = (g(images{j}(r,c,channel) + 1) - lt(j))*w(images{j}(r,c,channel) + 1);
-                    removeOneAvg = (tmpSum - tmpE)/(imageNum - 1);
-                    if abs(removeOneAvg - avg)/avg > 0.8
+                    removeOneAvg = (tmpSum - (images{j}(r,c,channel) + 1))/(imageNum - 1);
+                    if abs(removeOneAvg - avg) > 3
                         exclude(j) = 1;
                     end
                 end

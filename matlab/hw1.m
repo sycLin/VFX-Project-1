@@ -40,7 +40,7 @@ function hw1()
     x1 = g(y,1);
     x2 = g(y,2);
     x3 = g(y,3);
-    figure
+    figure;
     plot(x1, y, 'r', x2, y, 'g', x3, y, 'b');
     savefig('mapping.fig');
     
@@ -51,7 +51,7 @@ function hw1()
     writeRGBE(rgbeImg, 'result.rgbe');
     writeHDR(rgbeImg, ['result','.hdr']);
     hdr = hdrread('result.hdr');
-    rgb = tonemap(hdr);
+    rgb = tonemap(hdr,'AdjustLightness',[0.1 1],'AdjustSaturation',2);
     imwrite(rgb,'result.jpg');
 end
 
