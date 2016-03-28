@@ -1,8 +1,8 @@
 
 
-function hw1()
+function hw1(ImgDir, imagePrefix, startingNumber, extension, exposurePath)
     for i=1:16
-        Img{i} = imread(['./aligned/SAM_00', num2str(i+14), '.JPG']);
+        Img{i} = imread([ImgDir, imagePrefix, num2str(i+str2num(startingNumber)-1), extension]); %'./aligned/SAM_00'
     end
     
     for g=1:3
@@ -28,7 +28,7 @@ function hw1()
     
     w = weighted();
     w = w/max(w);
-    lt = B();
+    lt = B(exposurePath);
     g = zeros(256, 3);
     lE = zeros(50, 3);
     
@@ -60,8 +60,8 @@ function weight = weighted()
 	    weight = min(weight, 256-weight);
 end
 
-function lt = B()
-    [~, speed] = textread('./test_data2/expose.txt','%s %f');
+function lt = B(exposurePath)
+    [~, speed] = textread(exposurePath,'%s %f');
     lt = [];
     for i=1:size(speed,1)
         lt = cat(2, lt, log(1/speed(i)));
