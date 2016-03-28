@@ -1,7 +1,6 @@
 
 
 function hw1()
-    [~, speed] = textread('./test_data2/expose.txt','%s %f');
     for i=1:16
         Img{i} = imread(['./test_data2/SAM_00', num2str(i+14), '.JPG']);
     end
