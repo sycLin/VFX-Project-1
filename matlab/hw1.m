@@ -2,7 +2,7 @@
 
 function hw1()
     for i=1:16
-        Img{i} = imread(['./test_data2/SAM_00', num2str(i+14), '.JPG']);
+        Img{i} = imread(['./aligned/SAM_00', num2str(i+14), '.JPG']);
     end
     
     for g=1:3

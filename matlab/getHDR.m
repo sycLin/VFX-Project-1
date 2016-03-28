@@ -22,7 +22,7 @@ function HDRImg = getHDR(images, g, lt, w)
                 for j=1:imageNum
                     tmpE = (g(images{j}(r,c,channel) + 1) - lt(j))*w(images{j}(r,c,channel) + 1);
                     removeOneAvg = (tmpSum - tmpE)/(imageNum - 1);
-                    if abs(removeOneAvg - avg)/avg > 0.8
+                    if abs(removeOneAvg - avg)/avg > 0.2
                         exclude(j) = 1;
                     end
                 end

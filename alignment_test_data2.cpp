@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 	// store the resulted images into aligned/ directory
 	for(int i=0; i<16; i++) {
 		char file_name[50];
-		sprintf(file_name, "aligned/SAM_00%d.JPG", i+15);
+		sprintf(file_name, "./aligned/SAM_00%d.JPG", i+15);
 		cout << "(write) file_name: " << file_name << endl;
 		imwrite(file_name, images[i]);
 	}
