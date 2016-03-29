@@ -1,30 +1,22 @@
 VFX Project 1
 -------------
 
-## overview
+## how to run our program
 
-This project basically consists of 4 parts.
-* [x] taking photos w/ different exposures.
-* [x] image alignment (Steven)
-* [x] hdr radiance map producing
-* [ ] tone mapping
+1) To do image alignment, simply use the Makefile we provided.
 
-## taking photos
+Type in the command:
+```sh
+make alignAll
+```
+to align both sets of images in `input/scene1/` and `input/scene2`.
 
-## image alignment
-- input: N images
-- output: N processed images
+2) To do the HDR assembling:
 
-Take the 1st image as reference, align the rest.
+```sh
+cd matlab/
+matlab -r "hw1('../output/scene2/aligned/', 'SAM_00', '15', '16', '.JPG', '../input/scene2/expose.txt');exit"
+```
 
-Implementation in c++.
-
-Reference: [Ward's MTB image alignment method.](http://www.anyhere.com/gward/papers/jgtpap2.pdf)
-
-## hdr radiance map producing
-
-hw1('./aligned/', 'SAM_00', '15', '.JPG', './test_data2/expose.txt')
-
-## tone mapping
-
+3) There will be 4 resulted files: `result.hdr`, `result.jpg`, `result.rgbe`, `mapping.fig` in the same `matlab/` directory.
 
