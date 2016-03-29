@@ -1,7 +1,7 @@
 
 
-function hw1(ImgDir, imagePrefix, startingNumber, extension, exposurePath)
-    for i=1:16
+function hw1(ImgDir, imagePrefix, startingNumber, totalNumber, extension, exposurePath)
+    for i=1:str2num(totalNumber)
         Img{i} = imread([ImgDir, imagePrefix, num2str(i+str2num(startingNumber)-1), extension]); %'./aligned/SAM_00'
     end
     

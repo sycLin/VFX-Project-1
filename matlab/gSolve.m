@@ -27,7 +27,7 @@ function [g, lE] = gSolve(Z,B,l,w)
         A(k,i) = l*w(i+1);
         A(k,i+1) = -2*l*w(i+1);
         A(k,i+2) = l*w(i+1);
-        k = k+1
+        k = k+1;
     end
     
     x = A\b;

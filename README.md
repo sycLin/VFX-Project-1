@@ -23,6 +23,8 @@ Reference: [Ward's MTB image alignment method.](http://www.anyhere.com/gward/pap
 
 ## hdr radiance map producing
 
+hw1('./aligned/', 'SAM_00', '15', '.JPG', './test_data2/expose.txt')
+
 ## tone mapping
 
 
